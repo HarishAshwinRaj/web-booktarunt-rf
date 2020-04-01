@@ -1,11 +1,11 @@
 import React from 'react';
-
+import navbar from "./navbar"
 
 function App() {
   return (
 <div>
 
-read hello
+<navbar/>
 
 </div>
 
