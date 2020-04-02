@@ -5,9 +5,11 @@ import {BrowserRouter} from "react-router-dom";
 function App() {
   return (
     <BrowserRouter>
-<div>
+<header>
   <Navbar/>
-</div>
+  
+</header>
+
 </BrowserRouter>
   );
 }
