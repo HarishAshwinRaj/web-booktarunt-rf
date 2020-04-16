@@ -1,24 +1,30 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import Navbar from "./components/navbar";
 import {BrowserRouter, Route} from "react-router-dom";
 import Listrestar from './components/restacomponents/Lrestar';
 import RestaContextProvider from './contextapi/LsRest';
 import Signinu from "./components/auth/Signinu";
-import AuthContextProvider from './contextapi/auth';
+import {AuthContext} from './contextapi/auth';
 import Signup from './components/auth/Signup';
-function App() {
+import Landpg from './components/Newuser';
+import AddSupply from "./components/restaruntside/addfood";
+import SellerContextProvider from './contextapi/seller';
 
+function App() {
+  const {Curruser,Seller} = useContext(AuthContext);
   return (
     <BrowserRouter>
 <header>
-<AuthContextProvider>
+
 <RestaContextProvider>
-    <Navbar/>
-   <Route exact path ="/" component={Listrestar}/> 
-   <Route path ="/signin" component={Signinu}/>
-   <Route path ="/signup" component={Signup}/>
-  </RestaContextProvider>
-</AuthContextProvider>
+  <SellerContextProvider>
+      <Navbar/>
+      <Route exact path ="/" component= { !!Curruser ?( Seller ? AddSupply:Listrestar):Landpg }/> 
+      <Route path ="/signin" component={Signinu}/>
+      <Route path ="/signup" component={Signup}/>
+   </SellerContextProvider>
+</RestaContextProvider>
+
 </header>
 
 </BrowserRouter>

@@ -1,33 +1,36 @@
 import React,{useState,useEffect,createContext} from 'react';
+import Rerender from "../components/rerendering/Rerender";
 import firebase from "../firebase/firebase";
 export const AuthContext =createContext();
 const AuthContextProvider = (props) => {
    const [Curruser,seturruser] = useState(null);
+   const [Seller,setSeller] = useState(false);
    const addCurruser = (data)=>{
         seturruser(data);
    }
-
+   firebase.auth().onAuthStateChanged((data)=>{
+        console.log("user state changed" );
+        seturruser(data);
+        if (!!data){
+        const dn = data.displayName;
+        setSeller((dn ==="true")? true:false);}
+        else{
+                setSeller(false)
+        }
+        
+})
    useEffect(() => {
-           //firebase auth method
-        firebase.auth().onAuthStateChanged((data)=>{
-                seturruser(data);
-                console.log("user state changed");
-                
-        })
-         console.log(!!Curruser,"user log inn");
-         //jquery for side nav
-         const va = document.getElementById("jq1");
-         document.body.removeChild(va);
-         const ghi = document.createElement("script");
-         ghi.src="jv.js"
-         ghi.id="jq1"
-
-         document.body.appendChild(ghi);
+           // logging to console 
+        console.log( Curruser && Curruser.user,"lkl");
+        console.log(Seller,"sfsfs");
+        //firebase auth method
+        //jquery for side nav
+         Rerender();
          
-   }, [Curruser])
+   }, [Curruser,Seller])
  
     return (
-        <AuthContext.Provider value={{Curruser,addCurruser}} >
+        <AuthContext.Provider value={{Curruser,addCurruser,Seller,setSeller}} >
 {props.children}
         </AuthContext.Provider>
       );

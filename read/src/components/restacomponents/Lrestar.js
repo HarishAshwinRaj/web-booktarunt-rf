@@ -1,12 +1,12 @@
 import React,{useContext} from 'react';
 import {Restacontext} from "../../contextapi/LsRest";
+import OfferComp from '../specialoffers';
  const ListRestar = () => {
    const {Resta} = useContext(Restacontext);
    
    return ( 
     <div className ="container ">
-    <br/><br/><br/><br/><br/>
-    <br/><br/><br/><br/><br/>
+     <OfferComp/><div>
     {Resta.map(resta=>{
       return(<div  className =" hb1" key = {resta.id}>
         <div className ="brand-logo white-text"><h3>{resta.name }</h3></div>
@@ -22,7 +22,7 @@ import {Restacontext} from "../../contextapi/LsRest";
  })}
         </div>
       </div>)
-    })} 
+    })} </div>
     </div>
     );
  }

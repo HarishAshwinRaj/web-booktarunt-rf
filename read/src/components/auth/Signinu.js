@@ -7,6 +7,7 @@ const Signinu = () => {
     const [email,setemail]=useState("");
     const [password,setpassword] = useState("");
     const [message,setmessage]= useState("");
+    const [seller,setseller]=useState("");
     const {Curruser,addCurruser}= useContext(AuthContext);
     const histor =useHistory();
     return ( <div className="container center">
@@ -14,8 +15,7 @@ const Signinu = () => {
             <div className="container red-text"><h4>{message}</h4></div>
         <form className= "col s12 " onSubmit ={(e)=>{
             e.preventDefault();console.log("hkkkklsls");
-             console.log(email);
-             firebase.auth().signInWithEmailAndPassword(email,password).then(
+            firebase.auth().signInWithEmailAndPassword(email,password).then(
                 (data)=>{console.log("logged succesfully");addCurruser(data);
                 histor.push("/");
             }).catch((e)=>{console.log("err",e);
@@ -33,7 +33,7 @@ const Signinu = () => {
 <input id ="password" className="validate orange-text" onChange={(e)=>{setpassword(e.target.value);}} type = "password" ></input>
             <label htmlFor ="password">password</label>
     </div> 
-    <div><input type ="submit" className ="btn btn-pink"  /></div>     
+    <div><input type ="submit" className ="btn pink "  /></div>     
         </form></div></div> );
 }
 

@@ -5,11 +5,14 @@ import firebase from "../firebase/firebase";
 const Signin = () => {
     return ( 
         <div>
-      <a className ="sidenav-trigger" data-target ="mobl"><i className ="material-icons">menu</i></a>
+            
+      <a className ="sidenav-trigger" data-target ="mobl" href="#!"><i className ="material-icons">menu</i></a>
         <ul className ="right hide-on-med-and-down ">
             <li><Link to ="/" className= "waves-effect waves-light white-text" onClick={()=>{
-                firebase.auth().signOut();
-                console.log("logged out");
+                firebase.auth().signOut().then(()=>{
+                    console.log("logged out");
+                })
+                
             }}>logout</Link></li>
             <li><Link to ="/" className =" btn-floating pink waves-effect waves-light white-text">
                 <i className="material-icons">person</i>
